@@ -30,815 +30,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-    <style>
-      *,
-      *::before,
-      *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      :root {
-        --bg: #08080d;
-        --bg2: #0e0e17;
-        --bg-card: #111119;
-        --bg-card-hover: #1a1a2e;
-        --accent: #6c63ff;
-        --accent2: #00d4ff;
-        --accent3: #ff6b6b;
-        --accent4: #ffd93d;
-        --accent5: #00ffaa;
-        --text: #d8d8e8;
-        --text-dim: #7a7a96;
-        --text-bright: #ffffff;
-        --font-heading: "BBH Bartle", "Outfit", sans-serif;
-        --font-body: "Figtree", sans-serif;
-        --font-label: "Lexend", sans-serif;
-        --font-alt: "Outfit", sans-serif;
-      }
-
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 5rem;
-        overflow-x: hidden;
-      }
-      body {
-        background: var(--bg);
-        color: var(--text);
-        font-family: var(--font-body);
-        overflow-x: hidden;
-        line-height: 1.65;
-        font-weight: 400;
-      }
-      ::selection {
-        background: var(--accent);
-        color: #fff;
-      }
-
-      /* ── Animated Gradient Background ── */
-      .gradient-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-        pointer-events: none;
-        background:
-          radial-gradient(
-            ellipse at 0% 0%,
-            rgba(108, 99, 255, 0.15) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            ellipse at 100% 0%,
-            rgba(0, 212, 255, 0.1) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            ellipse at 100% 100%,
-            rgba(255, 107, 107, 0.1) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            ellipse at 0% 100%,
-            rgba(255, 217, 61, 0.08) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            ellipse at 50% 50%,
-            rgba(0, 255, 170, 0.05) 0%,
-            transparent 60%
-          );
-        background-size: 200% 200%;
-        animation: gradientShift 20s ease infinite;
-      }
-      .gradient-bg::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background:
-          radial-gradient(
-            circle at 20% 80%,
-            rgba(108, 99, 255, 0.12) 0%,
-            transparent 40%
-          ),
-          radial-gradient(
-            circle at 80% 20%,
-            rgba(0, 212, 255, 0.08) 0%,
-            transparent 40%
-          ),
-          radial-gradient(
-            circle at 60% 60%,
-            rgba(255, 107, 107, 0.06) 0%,
-            transparent 35%
-          );
-        background-size: 300% 300%;
-        animation: gradientShift2 25s ease infinite;
-      }
-      .gradient-bg::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background:
-          conic-gradient(
-            from 0deg at 30% 40%,
-            transparent 0deg,
-            rgba(108, 99, 255, 0.04) 60deg,
-            transparent 120deg
-          ),
-          conic-gradient(
-            from 180deg at 70% 60%,
-            transparent 0deg,
-            rgba(0, 212, 255, 0.04) 60deg,
-            transparent 120deg
-          );
-        background-size: 100% 100%;
-        animation: gradientRotate 30s linear infinite;
-      }
-      @keyframes gradientShift {
-        0%,
-        100% {
-          background-position: 0% 0%;
-        }
-        25% {
-          background-position: 100% 0%;
-        }
-        50% {
-          background-position: 100% 100%;
-        }
-        75% {
-          background-position: 0% 100%;
-        }
-      }
-      @keyframes gradientShift2 {
-        0%,
-        100% {
-          background-position: 100% 0%;
-        }
-        33% {
-          background-position: 0% 100%;
-        }
-        66% {
-          background-position: 50% 50%;
-        }
-      }
-      @keyframes gradientRotate {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      /* ── Navbar ── */
-      .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-        padding: 1.1rem 2.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        backdrop-filter: blur(24px);
-        background: rgba(8, 8, 13, 0.6);
-        border-bottom: 1px solid rgba(108, 99, 255, 0.08);
-        transition: all 0.3s ease;
-      }
-      .navbar.scrolled {
-        padding: 0.1rem 2.5rem;
-        background: rgba(8, 8, 13, 0.92);
-      }
-      .nav-logo {
-        font-family: var(--font-heading);
-        font-size: 1.6rem;
-        color: var(--text-bright);
-        text-decoration: none;
-      }
-      .nav-logo span {
-        color: var(--accent);
-      }
-      .nav-links {
-        display: flex;
-        gap: 2.2rem;
-        list-style: none;
-      }
-      .nav-links a {
-        color: var(--text-dim);
-        text-decoration: none;
-        font-size: 0.82rem;
-        font-weight: 500;
-        letter-spacing: 0.8px;
-        text-transform: uppercase;
-        transition: color 0.3s;
-        font-family: var(--font-label);
-      }
-      .nav-links a:hover {
-        color: var(--accent2);
-      }
-
-      /* ── Sections ── */
-      section {
-        position: relative;
-        z-index: 1;
-        padding: 7rem 2.5rem;
-        max-width: 1260px;
-        margin: 0 auto;
-      }
-
-      .section-label {
-        font-family: var(--font-label);
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: var(--accent);
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-      .section-label i {
-        font-size: 1rem;
-      }
-      .section-label::before {
-        content: "";
-        width: 35px;
-        height: 2px;
-        background: var(--accent);
-      }
-
-      .section-title {
-        font-family: var(--font-heading);
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        font-weight: 400;
-        color: var(--text-bright);
-        margin-bottom: 3.5rem;
-        letter-spacing: 1px;
-        line-height: 1.05;
-        text-transform: uppercase;
-        word-break: break-word;
-      }
-
-      /* ── HERO ── */
-      #hero {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-top: 7.5rem;
-      }
-      .hero-left {
-        z-index: 2;
-        min-width: 0;
-      }
-
-      .hero-name {
-        font-family: var(--font-heading);
-        font-size: clamp(2.5rem, 5.5vw, 5rem);
-        font-weight: 400;
-        line-height: 0.95;
-        letter-spacing: 1px;
-        margin-bottom: 1.2rem;
-        color: var(--text-bright);
-        text-transform: uppercase;
-        word-break: break-word;
-        overflow-wrap: break-word;
-      }
-      .gradient-text {
-        background: linear-gradient(
-          135deg,
-          var(--accent),
-          var(--accent2),
-          var(--accent3)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .hero-role {
-        font-family: var(--font-alt);
-        font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-        font-weight: 300;
-        color: var(--text-dim);
-        margin-bottom: 1.8rem;
-        letter-spacing: 0.5px;
-      }
-
-      .hero-desc {
-        max-width: 580px;
-        font-size: 1rem;
-        color: var(--text-dim);
-        line-height: 1.8;
-        margin-bottom: 2.5rem;
-      }
-
-      .hero-cta {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.9rem 2.2rem;
-        border-radius: 50px;
-        font-family: var(--font-label);
-        font-size: 0.82rem;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        border: none;
-        letter-spacing: 0.5px;
-      }
-      .btn i {
-        font-size: 1.1rem;
-      }
-      .btn-primary {
-        background: linear-gradient(135deg, var(--accent), #8b5cf6);
-        color: #fff;
-        box-shadow: 0 4px 30px rgba(108, 99, 255, 0.4);
-      }
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 40px rgba(108, 99, 255, 0.6);
-      }
-      .btn-outline {
-        background: transparent;
-        color: var(--text);
-        border: 1px solid rgba(108, 99, 255, 0.25);
-      }
-      .btn-outline:hover {
-        border-color: var(--accent);
-        background: rgba(108, 99, 255, 0.08);
-        transform: translateY(-2px);
-      }
-
-      .scroll-indicator {
-        position: absolute;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--text-dim);
-        font-family: var(--font-label);
-        font-size: 0.65rem;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        animation: bounce 2s ease-in-out infinite;
-      }
-      .scroll-line {
-        width: 1px;
-        height: 40px;
-        background: linear-gradient(180deg, var(--accent), transparent);
-      }
-      @keyframes bounce {
-        0%,
-        100% {
-          transform: translateX(-50%) translateY(0);
-        }
-        50% {
-          transform: translateX(-50%) translateY(10px);
-        }
-      }
-
-      /* ── Skills ── */
-      .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 1.5rem;
-      }
-      .skill-category {
-        background: var(--bg-card);
-        border: 1px solid rgba(255, 255, 255, 0.04);
-        border-radius: 16px;
-        padding: 2rem;
-        transition: all 0.4s ease;
-        position: relative;
-        overflow: hidden;
-      }
-      .skill-category:hover {
-        border-color: rgba(108, 99, 255, 0.2);
-        background: var(--bg-card-hover);
-        transform: translateY(-4px);
-      }
-
-      .skill-cat-title {
-        font-family: var(--font-alt);
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--text-bright);
-        margin-bottom: 1.2rem;
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-      }
-      .skill-cat-icon {
-        width: 36px;
-        height: 36px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.15rem;
-      }
-      .skill-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-      .skill-tag {
-        font-family: var(--font-label);
-        font-size: 0.72rem;
-        font-weight: 500;
-        padding: 0.4rem 0.85rem;
-        border-radius: 6px;
-        background: rgba(108, 99, 255, 0.07);
-        color: var(--accent2);
-        border: 1px solid rgba(108, 99, 255, 0.1);
-        transition: all 0.3s;
-      }
-      .skill-tag:hover {
-        background: rgba(108, 99, 255, 0.18);
-        border-color: var(--accent);
-        transform: scale(1.05);
-      }
-
-      /* ── Experience ── */
-      .timeline {
-        position: relative;
-      }
-      .timeline::before {
-        content: "";
-        position: absolute;
-        left: 20px;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: linear-gradient(
-          180deg,
-          var(--accent),
-          var(--accent2),
-          var(--accent3),
-          transparent
-        );
-      }
-      .timeline-item {
-        position: relative;
-        padding-left: 64px;
-        margin-bottom: 4.5rem;
-      }
-      .timeline-dot {
-        position: absolute;
-        left: 12px;
-        top: 6px;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: var(--bg);
-        border: 3px solid var(--accent);
-        z-index: 2;
-        transition: all 0.3s;
-      }
-      .timeline-item:hover .timeline-dot {
-        background: var(--accent);
-        box-shadow: 0 0 25px rgba(108, 99, 255, 0.5);
-      }
-      .timeline-date {
-        font-family: var(--font-label);
-        font-size: 0.78rem;
-        font-weight: 500;
-        color: var(--accent);
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        margin-bottom: 0.5rem;
-      }
-      .timeline-title {
-        font-family: "Google Sans Flex", var(--font-alt), sans-serif;
-        font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-        font-weight: 600;
-        color: var(--text-bright);
-        margin-bottom: 0.3rem;
-        letter-spacing: 0.3px;
-      }
-      .timeline-company {
-        font-family: var(--font-alt);
-        font-size: 1rem;
-        color: var(--accent2);
-        margin-bottom: 1rem;
-        font-weight: 500;
-      }
-      .timeline-points {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 0.7rem;
-      }
-      .timeline-points li {
-        position: relative;
-        padding-left: 1.6rem;
-        font-size: 0.9rem;
-        color: var(--text-dim);
-        line-height: 1.75;
-      }
-      .timeline-points li::before {
-        content: "\ea6e"; /* ri-arrow-right-s-line */
-        font-family: "remixicon";
-        position: absolute;
-        left: 0;
-        color: var(--accent);
-        font-size: 1rem;
-      }
-      .timeline-points li strong {
-        color: var(--text);
-        font-weight: 600;
-      }
-
-      /* ── Domains ── */
-      .domains-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-        gap: 1rem;
-      }
-      .domain-card {
-        background: var(--bg-card);
-        border: 1px solid rgba(255, 255, 255, 0.04);
-        border-radius: 14px;
-        padding: 1.6rem 1.2rem;
-        text-align: center;
-        transition: all 0.3s ease;
-        cursor: default;
-      }
-      .domain-card:hover {
-        border-color: rgba(108, 99, 255, 0.3);
-        transform: translateY(-5px) scale(1.02);
-        background: var(--bg-card-hover);
-      }
-      .domain-icon {
-        font-size: 1.8rem;
-        margin-bottom: 0.6rem;
-        color: var(--accent2);
-      }
-      .domain-name {
-        font-family: var(--font-alt);
-        font-size: 0.82rem;
-        font-weight: 500;
-        color: var(--text);
-      }
-
-      /* ── Certs ── */
-      .certs-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 1.5rem;
-      }
-      .cert-card {
-        background: var(--bg-card);
-        border: 1px solid rgba(255, 255, 255, 0.04);
-        border-radius: 16px;
-        padding: 2rem;
-        transition: all 0.4s ease;
-        position: relative;
-        overflow: hidden;
-      }
-      .cert-card:hover {
-        border-color: rgba(255, 107, 107, 0.2);
-        transform: translateY(-4px);
-      }
-      .cert-badge {
-        font-size: 2rem;
-        margin-bottom: 0.75rem;
-        color: var(--accent4);
-      }
-      .cert-name {
-        font-family: var(--font-alt);
-        font-weight: 600;
-        color: var(--text-bright);
-        font-size: 1.05rem;
-        margin-bottom: 0.25rem;
-      }
-      .cert-issuer {
-        font-size: 0.85rem;
-        color: var(--text-dim);
-        font-family: var(--font-label);
-      }
-
-      /* ── Contact ── */
-      #contact {
-        text-align: center;
-        padding-bottom: 8rem;
-      }
-      #contact .section-label {
-        justify-content: center;
-      }
-      #contact .section-label::before {
-        display: none;
-      }
-      .contact-heading {
-        font-family: var(--font-heading);
-        font-size: clamp(3rem, 8vw, 6rem);
-        font-weight: 400;
-        color: var(--text-bright);
-        letter-spacing: 1px;
-        margin-bottom: 1.5rem;
-        line-height: 1;
-        text-transform: uppercase;
-      }
-      .contact-sub {
-        color: var(--text-dim);
-        font-size: 1.1rem;
-        max-width: 520px;
-        margin: 0 auto 2.5rem;
-        font-family: var(--font-body);
-      }
-      .contact-links {
-        display: flex;
-        justify-content: center;
-        gap: 1.2rem;
-        flex-wrap: wrap;
-      }
-      .contact-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        padding: 0.8rem 1.8rem;
-        border-radius: 50px;
-        background: var(--bg-card);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        color: var(--text);
-        text-decoration: none;
-        font-family: var(--font-label);
-        font-size: 0.82rem;
-        font-weight: 500;
-        transition: all 0.3s ease;
-      }
-      .contact-link i {
-        font-size: 1.1rem;
-      }
-      .contact-link:hover {
-        border-color: var(--accent);
-        background: rgba(108, 99, 255, 0.08);
-        transform: translateY(-2px);
-        color: var(--accent2);
-      }
-
-      /* ── Footer ── */
-      footer {
-        position: relative;
-        z-index: 1;
-        text-align: center;
-        padding: 2.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.04);
-        font-size: 0.78rem;
-        color: var(--text-dim);
-        font-family: var(--font-label);
-      }
-
-      /* ── Scroll Effects ── */
-      .section-title .char {
-        display: inline-block;
-        opacity: 0;
-        transform: translateY(40px) rotateX(-90deg);
-        transform-origin: bottom;
-      }
-      .section-title .char-space {
-        display: inline-block;
-        width: 0.3em;
-      }
-
-      .hero-name .word {
-        display: inline-block;
-        overflow: hidden;
-      }
-      .hero-name .word-inner {
-        display: inline-block;
-      }
-
-      #hero {
-        will-change: transform, opacity;
-      }
-
-      .skill-category {
-        will-change: transform;
-      }
-
-      .timeline-connector {
-        position: absolute;
-        left: 17px;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: var(--accent);
-        transform-origin: top;
-        transform: scaleY(0);
-      }
-
-      .contact-heading .word {
-        display: inline-block;
-        overflow: hidden;
-      }
-      .contact-heading .word-inner {
-        display: inline-block;
-        transform: translateY(100%);
-      }
-
-      /* ── Responsive ── */
-      @media (max-width: 1100px) {
-        #hero {
-          gap: 2rem;
-        }
-      }
-      @media (max-width: 900px) {
-        #hero {
-          text-align: center;
-          gap: 2.5rem;
-        }
-        .hero-cta {
-          justify-content: center;
-        }
-        .hero-desc {
-          margin-left: auto;
-          margin-right: auto;
-        }
-        .hero-name {
-          font-size: clamp(2.5rem, 12vw, 5rem);
-        }
-        .section-title {
-          font-size: clamp(2rem, 8vw, 4rem);
-        }
-        .skills-grid {
-          grid-template-columns: 1fr;
-        }
-        .certs-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-      @media (max-width: 768px) {
-        .navbar {
-          padding: 0.8rem 1.2rem;
-        }
-        .nav-links {
-          display: none;
-        }
-        section {
-          padding: 4rem 1.25rem;
-        }
-        #hero {
-          padding-top: 6rem;
-          min-height: auto;
-          padding-bottom: 3rem;
-        }
-        .hero-role {
-          font-size: 1rem;
-        }
-        .timeline::before {
-          left: 12px;
-        }
-        .timeline-item {
-          padding-left: 48px;
-        }
-        .timeline-dot {
-          left: 4px;
-        }
-        .domains-grid {
-          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        }
-        .contact-heading {
-          font-size: clamp(2rem, 8vw, 3.5rem);
-        }
-        .scroll-indicator {
-          display: none;
-        }
-      }
-      @media (max-width: 480px) {
-        section {
-          padding: 3rem 1rem;
-        }
-        .hero-name {
-          font-size: clamp(2rem, 14vw, 3.5rem);
-        }
-        .btn {
-          padding: 0.75rem 1.5rem;
-          font-size: 0.75rem;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="gradient-bg"></div>
@@ -874,20 +66,20 @@
     <!-- ═══════ HERO ═══════ -->
     <section id="hero">
       <div class="hero-left">
-        <h1 class="hero-name">
+        <h1 class="hero-name reveal">
           Priyansh<br /><span class="gradient-text">Dwivedi</span>
         </h1>
-        <p class="hero-role">
+        <p class="hero-role reveal">
           <i class="ri-terminal-box-line"></i> Senior Solutions Architect — Web,
           Backend &amp; UI/UX
         </p>
-        <p class="hero-desc">
+        <p class="hero-desc reveal">
           Full-stack Solution Architect with <strong>14+ years</strong> of
           hands-on experience building IT and cloud solutions across multiple
           technologies and domains — Finance, Insurance, Investment, Logistics,
           Fashion, Crypto and more.
         </p>
-        <div class="hero-cta">
+        <div class="hero-cta reveal">
           <a href="mailto:priyanshdwivedi7@gmail.com" class="btn btn-primary">
             <i class="ri-mail-send-line"></i> Get in Touch
           </a>
@@ -904,12 +96,12 @@
 
     <!-- ═══════ SKILLS ═══════ -->
     <section id="skills">
-      <div class="section-label">
+      <div class="section-label reveal">
         <i class="ri-flashlight-line"></i> Skills &amp; Expertise
       </div>
-      <h2 class="section-title">Technology<br />Stack</h2>
+      <h2 class="section-title reveal">Technology<br />Stack</h2>
       <div class="skills-grid">
-        <div class="skill-category">
+        <div class="skill-category reveal">
           <div class="skill-cat-title">
             <div
               class="skill-cat-icon"
@@ -929,7 +121,7 @@
             <span class="skill-tag">CSS3 / SCSS</span>
           </div>
         </div>
-        <div class="skill-category">
+        <div class="skill-category reveal">
           <div class="skill-cat-title">
             <div
               class="skill-cat-icon"
@@ -947,7 +139,7 @@
             <span class="skill-tag">REST</span>
           </div>
         </div>
-        <div class="skill-category">
+        <div class="skill-category reveal">
           <div class="skill-cat-title">
             <div
               class="skill-cat-icon"
@@ -968,7 +160,7 @@
             <span class="skill-tag">Redis</span>
           </div>
         </div>
-        <div class="skill-category">
+        <div class="skill-category reveal">
           <div class="skill-cat-title">
             <div
               class="skill-cat-icon"
@@ -988,7 +180,7 @@
             <span class="skill-tag">Micro Frontends</span>
           </div>
         </div>
-        <div class="skill-category">
+        <div class="skill-category reveal">
           <div class="skill-cat-title">
             <div
               class="skill-cat-icon"
@@ -1011,12 +203,12 @@
 
     <!-- ═══════ EXPERIENCE ═══════ -->
     <section id="experience">
-      <div class="section-label">
+      <div class="section-label reveal">
         <i class="ri-briefcase-line"></i> Career Journey
       </div>
-      <h2 class="section-title">Work<br />Experience</h2>
+      <h2 class="section-title reveal">Work<br />Experience</h2>
       <div class="timeline">
-        <div class="timeline-item">
+        <div class="timeline-item reveal-left">
           <div class="timeline-dot"></div>
           <div class="timeline-date">
             <i class="ri-calendar-line"></i> Oct 2024 — Present
@@ -1052,7 +244,7 @@
           </ul>
         </div>
 
-        <div class="timeline-item">
+        <div class="timeline-item reveal-left">
           <div class="timeline-dot"></div>
           <div class="timeline-date">
             <i class="ri-calendar-line"></i> Aug 2021 — Oct 2024
@@ -1089,7 +281,7 @@
           </ul>
         </div>
 
-        <div class="timeline-item">
+        <div class="timeline-item reveal-left">
           <div class="timeline-dot"></div>
           <div class="timeline-date">
             <i class="ri-calendar-line"></i> Oct 2015 — Aug 2021
@@ -1126,7 +318,7 @@
           </ul>
         </div>
 
-        <div class="timeline-item">
+        <div class="timeline-item reveal-left">
           <div class="timeline-dot"></div>
           <div class="timeline-date">
             <i class="ri-calendar-line"></i> Feb 2015 — Oct 2015
@@ -1151,7 +343,7 @@
           </ul>
         </div>
 
-        <div class="timeline-item">
+        <div class="timeline-item reveal-left">
           <div class="timeline-dot"></div>
           <div class="timeline-date">
             <i class="ri-calendar-line"></i> Nov 2011 — Feb 2015
@@ -1176,72 +368,72 @@
 
     <!-- ═══════ DOMAINS ═══════ -->
     <section id="domains">
-      <div class="section-label">
+      <div class="section-label reveal">
         <i class="ri-global-line"></i> Industry Expertise
       </div>
-      <h2 class="section-title">Domains</h2>
+      <h2 class="section-title reveal">Domains</h2>
       <div class="domains-grid">
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-bank-line"></i></div>
           <div class="domain-name">FinTech</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-hand-coin-line"></i></div>
           <div class="domain-name">Lending</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-line-chart-line"></i></div>
           <div class="domain-name">Investments</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-shield-check-line"></i></div>
           <div class="domain-name">Insurance</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-truck-line"></i></div>
           <div class="domain-name">Logistics</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-bit-coin-line"></i></div>
           <div class="domain-name">Blockchain / Crypto</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-shirt-line"></i></div>
           <div class="domain-name">Fashion</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-heart-pulse-line"></i></div>
           <div class="domain-name">Wellness</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-shopping-cart-line"></i></div>
           <div class="domain-name">E-Commerce</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-wifi-line"></i></div>
           <div class="domain-name">IoT</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-plane-line"></i></div>
           <div class="domain-name">Travel</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-roadster-line"></i></div>
           <div class="domain-name">Automobile</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-suitcase-line"></i></div>
           <div class="domain-name">IT Consulting</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-government-line"></i></div>
           <div class="domain-name">Public Sector</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-calendar-event-line"></i></div>
           <div class="domain-name">Event Planning</div>
         </div>
-        <div class="domain-card">
+        <div class="domain-card reveal-scale">
           <div class="domain-icon"><i class="ri-graduation-cap-line"></i></div>
           <div class="domain-name">Education</div>
         </div>
@@ -1250,22 +442,22 @@
 
     <!-- ═══════ CERTIFICATIONS ═══════ -->
     <section id="certifications">
-      <div class="section-label">
+      <div class="section-label reveal">
         <i class="ri-medal-line"></i> Credentials
       </div>
-      <h2 class="section-title">Education &amp;<br />Certifications</h2>
+      <h2 class="section-title reveal">Education &amp;<br />Certifications</h2>
       <div class="certs-grid">
-        <div class="cert-card">
+        <div class="cert-card reveal">
           <div class="cert-badge"><i class="ri-graduation-cap-line"></i></div>
           <div class="cert-name">B.Tech. in Information Technology</div>
           <div class="cert-issuer">UPTU, India · 2007 – 2011</div>
         </div>
-        <div class="cert-card">
+        <div class="cert-card reveal">
           <div class="cert-badge"><i class="ri-cloud-line"></i></div>
           <div class="cert-name">AWS Certified Cloud Practitioner</div>
           <div class="cert-issuer">Amazon Web Services</div>
         </div>
-        <div class="cert-card">
+        <div class="cert-card reveal">
           <div class="cert-badge"><i class="ri-cup-line"></i></div>
           <div class="cert-name">Oracle Certified Professional Java SE 6</div>
           <div class="cert-issuer">Oracle Corporation</div>
@@ -1275,18 +467,18 @@
 
     <!-- ═══════ CONTACT ═══════ -->
     <section id="contact">
-      <div class="section-label">
+      <div class="section-label reveal">
         <i class="ri-chat-smile-2-line"></i> Let's Connect
       </div>
-      <h2 class="contact-heading">
+      <h2 class="contact-heading reveal">
         Ready to build<br />something
         <span class="gradient-text">amazing?</span>
       </h2>
-      <p class="contact-sub">
+      <p class="contact-sub reveal">
         I'm always open to discussing new projects, creative ideas, or
         opportunities to be part of your vision.
       </p>
-      <div class="contact-links">
+      <div class="contact-links reveal">
         <a href="mailto:priyanshdwivedi7@gmail.com" class="contact-link"
           ><i class="ri-mail-line"></i> priyanshdwivedi7@gmail.com</a
         >
@@ -1307,300 +499,8 @@
         <i class="ri-code-s-slash-line"></i> © <span id="year"></span> Priyansh
         Dwivedi · Crafted with precision
       </p>
-      <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-      </script>
     </footer>
 
-    <!-- ════════════════════════════════════════════════════════ -->
-    <script>
-      /* ── GSAP Animations ── */
-      gsap.registerPlugin(ScrollTrigger);
-
-      /* ─── Helper: Split text into characters ─── */
-      function splitChars(el) {
-        const html = el.innerHTML;
-        // Handle <br> tags and text
-        const parts = html.split(/(<br\s*\/?>)/gi);
-        el.innerHTML = '';
-        parts.forEach(part => {
-          if (part.match(/<br\s*\/?>/i)) {
-            el.appendChild(document.createElement('br'));
-          } else {
-            const text = part.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-            [...text].forEach(ch => {
-              if (ch === ' ') {
-                const s = document.createElement('span');
-                s.className = 'char-space';
-                el.appendChild(s);
-              } else {
-                const s = document.createElement('span');
-                s.className = 'char';
-                s.textContent = ch;
-                el.appendChild(s);
-              }
-            });
-          }
-        });
-        return el.querySelectorAll('.char');
-      }
-
-      /* ─── Split section titles into chars ─── */
-      document.querySelectorAll('.section-title').forEach(title => {
-        const chars = splitChars(title);
-        gsap.to(chars, {
-          scrollTrigger: {
-            trigger: title,
-            start: 'top 85%',
-            end: 'top 50%',
-            scrub: 0.5,
-          },
-          opacity: 1,
-          y: 0,
-          rotateX: 0,
-          stagger: 0.03,
-          ease: 'power2.out',
-        });
-      });
-
-      /* ─── Hero parallax & zoom-out ─── */
-      const heroSection = document.querySelector('#hero');
-      const heroName = document.querySelector('.hero-name');
-      const heroRole = document.querySelector('.hero-role');
-      const heroDesc = document.querySelector('.hero-desc');
-      const heroCta = document.querySelector('.hero-cta');
-
-      // Hero entrance — word-by-word with mask reveal
-      gsap.fromTo('#hero .hero-name', { opacity: 0, y: 80, scale: 0.9 }, {
-        opacity: 1, y: 0, scale: 1, duration: 1.3, delay: 0.3, ease: 'expo.out'
-      });
-      gsap.fromTo('#hero .hero-role', { opacity: 0, y: 40, clipPath: 'inset(0 100% 0 0)' }, {
-        opacity: 1, y: 0, clipPath: 'inset(0 0% 0 0)', duration: 1, delay: 0.7, ease: 'power3.out'
-      });
-      gsap.fromTo('#hero .hero-desc', { opacity: 0, y: 30 }, {
-        opacity: 1, y: 0, duration: 0.9, delay: 1.0, ease: 'power3.out'
-      });
-      gsap.fromTo('#hero .hero-cta', { opacity: 0, y: 25, scale: 0.95 }, {
-        opacity: 1, y: 0, scale: 1, duration: 0.8, delay: 1.2, ease: 'back.out(1.7)'
-      });
-      gsap.fromTo('#hero .scroll-indicator', { opacity: 0 }, {
-        opacity: 1, duration: 1, delay: 2.2
-      });
-
-      // Hero parallax on scroll
-      gsap.to('#hero .hero-name', {
-        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
-        y: -120, opacity: 0.3, scale: 0.92, ease: 'none'
-      });
-      gsap.to('#hero .hero-role', {
-        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
-        y: -80, opacity: 0, ease: 'none'
-      });
-      gsap.to('#hero .hero-desc', {
-        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
-        y: -50, opacity: 0, ease: 'none'
-      });
-      gsap.to('#hero .hero-cta', {
-        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
-        y: -30, opacity: 0, ease: 'none'
-      });
-
-      /* ─── Gradient bg parallax shift ─── */
-      gsap.to('.gradient-bg', {
-        scrollTrigger: {
-          trigger: 'body',
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: 1,
-        },
-        backgroundPosition: '100% 100%',
-        ease: 'none',
-      });
-
-      /* ─── Section label slide-in with line ─── */
-      gsap.utils.toArray('.section-label').forEach(el => {
-        gsap.fromTo(el, 
-          { opacity: 0, x: -40, clipPath: 'inset(0 100% 0 0)' },
-          {
-            scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
-            opacity: 1, x: 0, clipPath: 'inset(0 0% 0 0)', duration: 1, ease: 'power3.out'
-          }
-        );
-      });
-
-      /* ─── Skill categories — 3D tilt on scroll ─── */
-      gsap.utils.toArray('.skill-category').forEach((el, i) => {
-        gsap.fromTo(el,
-          { opacity: 0, y: 60, rotateY: i % 2 === 0 ? -15 : 15, transformPerspective: 800 },
-          {
-            scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 60%', scrub: 0.6 },
-            opacity: 1, y: 0, rotateY: 0, ease: 'power2.out'
-          }
-        );
-      });
-
-      // Skill tag hover stagger
-      document.querySelectorAll('.skill-category').forEach(cat => {
-        cat.addEventListener('mouseenter', () => {
-          gsap.fromTo(cat.querySelectorAll('.skill-tag'),
-            { scale: 0.9, opacity: 0.5 },
-            { scale: 1, opacity: 1, duration: 0.3, stagger: 0.04, ease: 'back.out(2)' }
-          );
-        });
-      });
-
-      /* ─── Timeline — progressive reveal with scrub ─── */
-      const timeline = document.querySelector('.timeline');
-      if (timeline) {
-        // Animate the connecting line
-        const connector = document.createElement('div');
-        connector.className = 'timeline-connector';
-        timeline.style.position = 'relative';
-        timeline.prepend(connector);
-
-        gsap.to(connector, {
-          scrollTrigger: {
-            trigger: timeline,
-            start: 'top 70%',
-            end: 'bottom 60%',
-            scrub: 1.5,
-          },
-          scaleY: 1,
-          ease: 'none',
-        });
-      }
-
-      gsap.utils.toArray('.timeline-item').forEach((el, i) => {
-        gsap.fromTo(el,
-          { opacity: 0, x: -80, rotateY: -8, transformPerspective: 600 },
-          {
-            scrollTrigger: { trigger: el, start: 'top 82%', end: 'top 55%', scrub: 0.8 },
-            opacity: 1, x: 0, rotateY: 0, ease: 'power3.out'
-          }
-        );
-      });
-
-      // Timeline dot glow — pulse animation
-      gsap.utils.toArray('.timeline-dot').forEach(dot => {
-        gsap.to(dot, {
-          scrollTrigger: { trigger: dot, start: 'top 70%', toggleActions: 'play none none none' },
-          boxShadow: '0 0 25px rgba(108,99,255,0.6)',
-          background: '#6c63ff',
-          scale: 1.4,
-          duration: 0.4,
-          ease: 'back.out(3)',
-          onComplete: () => {
-            gsap.to(dot, { scale: 1, duration: 0.5, ease: 'elastic.out(1,0.5)' });
-          }
-        });
-      });
-
-      /* ─── Domain cards — wave stagger ─── */
-      gsap.utils.toArray('.domain-card').forEach((el, i) => {
-        gsap.fromTo(el,
-          { opacity: 0, scale: 0.6, y: 40, rotation: (i % 2 === 0 ? -5 : 5) },
-          {
-            scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' },
-            opacity: 1, scale: 1, y: 0, rotation: 0,
-            duration: 0.6, delay: (i % 8) * 0.06,
-            ease: 'back.out(1.7)'
-          }
-        );
-      });
-
-      /* ─── Cert cards — flip in ─── */
-      gsap.utils.toArray('.cert-card').forEach((el, i) => {
-        gsap.fromTo(el,
-          { opacity: 0, rotateX: -30, y: 50, transformPerspective: 800, transformOrigin: 'top center' },
-          {
-            scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
-            opacity: 1, rotateX: 0, y: 0,
-            duration: 0.8, delay: i * 0.12,
-            ease: 'power3.out'
-          }
-        );
-      });
-
-      /* ─── Contact section — dramatic entrance ─── */
-      const contactSection = document.querySelector('#contact');
-      if (contactSection) {
-        gsap.fromTo(contactSection.querySelector('.contact-heading'),
-          { opacity: 0, scale: 0.7, y: 80 },
-          {
-            scrollTrigger: { trigger: contactSection, start: 'top 75%', end: 'top 40%', scrub: 0.8 },
-            opacity: 1, scale: 1, y: 0, ease: 'power2.out'
-          }
-        );
-        gsap.fromTo(contactSection.querySelector('.contact-sub'),
-          { opacity: 0, y: 30 },
-          {
-            scrollTrigger: { trigger: contactSection, start: 'top 65%', end: 'top 35%', scrub: 0.8 },
-            opacity: 1, y: 0, ease: 'power2.out'
-          }
-        );
-        gsap.utils.toArray(contactSection.querySelectorAll('.contact-link')).forEach((el, i) => {
-          gsap.fromTo(el,
-            { opacity: 0, y: 30, scale: 0.8 },
-            {
-              scrollTrigger: { trigger: contactSection, start: 'top 55%', toggleActions: 'play none none none' },
-              opacity: 1, y: 0, scale: 1,
-              duration: 0.6, delay: i * 0.1,
-              ease: 'back.out(2)'
-            }
-          );
-        });
-      }
-
-      /* ─── Footer slide up ─── */
-      gsap.fromTo('footer',
-        { opacity: 0, y: 30 },
-        {
-          scrollTrigger: { trigger: 'footer', start: 'top 95%', toggleActions: 'play none none none' },
-          opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'
-        }
-      );
-
-      /* ─── Magnetic hover on buttons ─── */
-      document.querySelectorAll('.btn, .contact-link').forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-          const rect = btn.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          gsap.to(btn, { x: x * 0.15, y: y * 0.15, duration: 0.3, ease: 'power2.out' });
-        });
-        btn.addEventListener('mouseleave', () => {
-          gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1,0.5)' });
-        });
-      });
-
-      /* ─── Smooth scroll-linked nav highlight ─── */
-      const sections = document.querySelectorAll('section[id]');
-      const navLinks = document.querySelectorAll('.nav-links a');
-      ScrollTrigger.create({
-        trigger: 'body',
-        start: 'top top',
-        end: 'bottom bottom',
-        onUpdate: () => {
-          let current = '';
-          sections.forEach(section => {
-            const top = section.offsetTop - 200;
-            if (window.scrollY >= top) current = section.id;
-          });
-          navLinks.forEach(link => {
-            link.style.opacity = link.getAttribute('href') === '#' + current ? '1' : '0.5';
-            link.style.transition = 'opacity 0.3s';
-          });
-        }
-      });
-
-      // Scroll to top on load
-      window.scrollTo(0, 0);
-
-      // Navbar scroll
-      const navbar = document.getElementById('navbar');
-      window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 60);
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
