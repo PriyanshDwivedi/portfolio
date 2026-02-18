@@ -2,29 +2,36 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 
 /* ── Mobile hamburger menu ── */
-const hamburgerCheckbox = document.getElementById("hamburger-checkbox");
-const mobileOverlay = document.getElementById("mobile-overlay");
+(() => {
+  const hamburger = document.getElementById("hamburger");
+  const overlay = document.getElementById("mobile-overlay");
+  if (!hamburger || !overlay) return;
 
-if (hamburgerCheckbox && mobileOverlay) {
-  hamburgerCheckbox.addEventListener("change", () => {
-    if (hamburgerCheckbox.checked) {
-      mobileOverlay.classList.add("active");
-      document.body.style.overflow = "hidden";
+  function openMenu() {
+    hamburger.classList.add("active");
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  hamburger.addEventListener("click", () => {
+    if (overlay.classList.contains("active")) {
+      closeMenu();
     } else {
-      mobileOverlay.classList.remove("active");
-      document.body.style.overflow = "";
+      openMenu();
     }
   });
 
   // Close overlay when a link is tapped
-  mobileOverlay.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      hamburgerCheckbox.checked = false;
-      mobileOverlay.classList.remove("active");
-      document.body.style.overflow = "";
-    });
+  overlay.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
   });
-}
+})();
 
 /* ── GSAP Animations ── */
 gsap.registerPlugin(ScrollTrigger);

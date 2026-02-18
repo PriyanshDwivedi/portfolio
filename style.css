@@ -172,7 +172,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 200;
   padding: 1.1rem 2.5rem;
   display: flex;
   justify-content: space-between;
@@ -222,7 +222,11 @@ body {
   height: 36px;
   justify-content: center;
   align-items: center;
-  z-index: 200;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 .hamburger svg {
   width: 56px;
@@ -232,31 +236,31 @@ body {
   stroke-width: 7px;
   stroke-linecap: round;
   stroke-linejoin: round;
+  pointer-events: none;
 }
 .hamburger svg use:nth-of-type(1) {
   opacity: 1;
   stroke-dashoffset: 221;
   stroke-dasharray: 46 249;
-  transition: stroke-dashoffset 0.12s linear 0.2s, stroke-dasharray 0.12s linear 0.2s, opacity 0s linear 0.2s;
+  transition:
+    stroke-dashoffset 0.12s linear 0.2s,
+    stroke-dasharray 0.12s linear 0.2s,
+    opacity 0s linear 0.2s;
 }
 .hamburger svg use:nth-of-type(2) {
-  animation: stroke-animation-reverse 1.2s ease-out forwards;
+  stroke-dashoffset: 290;
+  stroke-dasharray: 25 270;
 }
-.hamburger input {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  z-index: 2;
-  cursor: pointer;
-  opacity: 0;
-}
-.hamburger input:checked + svg use:nth-of-type(1) {
+.hamburger.active svg use:nth-of-type(1) {
   stroke-dashoffset: 175;
   stroke-dasharray: 0 295;
   opacity: 0;
-  transition: stroke-dashoffset 0.07s linear 0.07s, stroke-dasharray 0.07s linear 0.07s, opacity 0s linear 0.14s;
+  transition:
+    stroke-dashoffset 0.07s linear 0.07s,
+    stroke-dasharray 0.07s linear 0.07s,
+    opacity 0s linear 0.14s;
 }
-.hamburger input:checked + svg use:nth-of-type(2) {
+.hamburger.active svg use:nth-of-type(2) {
   animation: stroke-animation 1.2s ease-out forwards;
 }
 
@@ -278,30 +282,14 @@ body {
     stroke-dasharray: 59 236;
   }
 }
-@keyframes stroke-animation-reverse {
-  0% {
-    stroke-dashoffset: 68;
-    stroke-dasharray: 59 236;
-  }
-  50% {
-    stroke-dashoffset: 290;
-    stroke-dasharray: 25 270;
-  }
-  65% {
-    stroke-dashoffset: 295;
-    stroke-dasharray: 25 270;
-  }
-  100% {
-    stroke-dashoffset: 290;
-    stroke-dasharray: 25 270;
-  }
-}
 
 /* ── Mobile overlay ── */
 .mobile-overlay {
   position: fixed;
   top: 0;
+  left: 0;
   right: 0;
+  bottom: 0;
   width: 100%;
   height: 100vh;
   height: 100dvh;
@@ -311,11 +299,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateX(100%);
-  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
 }
 .mobile-overlay.active {
-  transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
 }
 .mobile-nav-links {
   list-style: none;
@@ -327,17 +319,29 @@ body {
 .mobile-nav-links li {
   opacity: 0;
   transform: translateX(40px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
 }
 .mobile-overlay.active .mobile-nav-links li {
   opacity: 1;
   transform: translateX(0);
 }
-.mobile-overlay.active .mobile-nav-links li:nth-child(1) { transition-delay: 0.15s; }
-.mobile-overlay.active .mobile-nav-links li:nth-child(2) { transition-delay: 0.2s; }
-.mobile-overlay.active .mobile-nav-links li:nth-child(3) { transition-delay: 0.25s; }
-.mobile-overlay.active .mobile-nav-links li:nth-child(4) { transition-delay: 0.3s; }
-.mobile-overlay.active .mobile-nav-links li:nth-child(5) { transition-delay: 0.35s; }
+.mobile-overlay.active .mobile-nav-links li:nth-child(1) {
+  transition-delay: 0.15s;
+}
+.mobile-overlay.active .mobile-nav-links li:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.mobile-overlay.active .mobile-nav-links li:nth-child(3) {
+  transition-delay: 0.25s;
+}
+.mobile-overlay.active .mobile-nav-links li:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.mobile-overlay.active .mobile-nav-links li:nth-child(5) {
+  transition-delay: 0.35s;
+}
 .mobile-nav-links a {
   color: var(--text-bright);
   text-decoration: none;
@@ -432,11 +436,20 @@ section {
     135deg,
     var(--accent),
     var(--accent2),
-    var(--accent3)
+    var(--accent3),
+    var(--accent),
+    var(--accent2)
   );
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient-shift 6s ease infinite;
+}
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .hero-role {
@@ -848,11 +861,11 @@ footer {
 }
 @media (max-width: 900px) {
   #hero {
-    text-align: center;
+    text-align: left;
     gap: 2.5rem;
   }
   .hero-cta {
-    justify-content: center;
+    justify-content: flex-start;
   }
   .hero-desc {
     margin-left: auto;
