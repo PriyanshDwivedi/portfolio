@@ -97,10 +97,14 @@ gsap.utils.toArray(".reveal-scale").forEach((el, i) => {
 // Scroll to top on load
 window.scrollTo(0, 0);
 
-// Navbar scroll
+// Navbar scroll + hide scroll indicator
 const navbar = document.getElementById("navbar");
+const scrollIndicator = document.querySelector(".scroll-indicator");
 window.addEventListener("scroll", () => {
   navbar.classList.toggle("scrolled", window.scrollY > 60);
+  if (scrollIndicator) {
+    scrollIndicator.style.opacity = window.scrollY > 50 ? "0" : "";
+  }
 });
 
 // Skill tag hover stagger
