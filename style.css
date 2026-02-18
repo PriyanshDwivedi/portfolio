@@ -17,7 +17,7 @@
   --accent4: #ffd93d;
   --accent5: #00ffaa;
   --text: #d8d8e8;
-  --text-dim: #9a9ab0;
+  --text-dim: #b9b9cf;
   --text-bright: #ffffff;
   --font-heading: "BBH Bartle", "Outfit", sans-serif;
   --font-body: "Figtree", sans-serif;
@@ -931,7 +931,7 @@ footer {
     padding: 3rem 1rem;
   }
   .hero-name {
-    font-size: clamp(1.5rem, 6.5vw, 2.5rem);
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
   }
   .btn {
     padding: 0.75rem 1.5rem;
