@@ -54,6 +54,21 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
     ></script>
     <script defer src="script.min.js"></script>
+
+    <!-- Hide body until fonts load to prevent FOUT -->
+    <style>
+      body { opacity: 0; }
+      body.fonts-ready { opacity: 1; transition: opacity 0.2s ease; }
+    </style>
+    <script>
+      document.fonts.ready.then(function () {
+        document.body.classList.add("fonts-ready");
+      });
+      // Fallback: show after 2s even if fonts fail
+      setTimeout(function () {
+        document.body.classList.add("fonts-ready");
+      }, 2000);
+    </script>
   </head>
   <body>
     <div class="gradient-bg"></div>
