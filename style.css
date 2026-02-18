@@ -874,7 +874,7 @@ footer {
     justify-content: flex-start;
   }
   .hero-name {
-    font-size: clamp(2rem, 9.5vw, 5rem);
+    font-size: clamp(2rem, 5vw, 3rem);
   }
   .section-title {
     font-size: clamp(2rem, 8vw, 4rem);
@@ -931,7 +931,7 @@ footer {
     padding: 3rem 1rem;
   }
   .hero-name {
-    font-size: clamp(1.8rem, 9vw, 3rem);
+    font-size: clamp(1.5rem, 6.5vw, 2.5rem);
   }
   .btn {
     padding: 0.75rem 1.5rem;
