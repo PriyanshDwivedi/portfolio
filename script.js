@@ -1,6 +1,31 @@
 /* ── Year in footer ── */
 document.getElementById("year").textContent = new Date().getFullYear();
 
+/* ── Mobile hamburger menu ── */
+const hamburgerCheckbox = document.getElementById("hamburger-checkbox");
+const mobileOverlay = document.getElementById("mobile-overlay");
+
+if (hamburgerCheckbox && mobileOverlay) {
+  hamburgerCheckbox.addEventListener("change", () => {
+    if (hamburgerCheckbox.checked) {
+      mobileOverlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+    } else {
+      mobileOverlay.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+  });
+
+  // Close overlay when a link is tapped
+  mobileOverlay.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburgerCheckbox.checked = false;
+      mobileOverlay.classList.remove("active");
+      document.body.style.overflow = "";
+    });
+  });
+}
+
 /* ── GSAP Animations ── */
 gsap.registerPlugin(ScrollTrigger);
 
