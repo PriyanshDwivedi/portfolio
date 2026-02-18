@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio of Priyansh Dwivedi — Solutions Architect specializing in cloud architecture, AI/ML, and enterprise systems." />
     <title>Priyansh Dwivedi — Solutions Architect</title>
 
     <!-- Favicon -->
@@ -15,22 +16,35 @@
     <!-- Google Fonts: BBH Bartle, Figtree, Lexend, Outfit, Google Sans Flex -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+    <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=Figtree:ital,wght@0,300..900;1,300..900&family=Google+Sans+Flex:wght@400;500;600;700&family=Lexend:wght@100..900&family=Outfit:wght@100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=Figtree:wght@300..700&family=Google+Sans+Flex:wght@600&family=Lexend:wght@500;600&family=Outfit:wght@300..600&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Remix Icon -->
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.min.css" />
+
+    <!-- Remix Icon (async — not needed for first paint) -->
     <link
+      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
-      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+    /></noscript>
 
-    <!-- GSAP + ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <link rel="stylesheet" href="style.css" />
+    <!-- GSAP + ScrollTrigger + App (all deferred) -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script defer src="script.min.js"></script>
   </head>
   <body>
     <div class="gradient-bg"></div>
@@ -570,6 +584,5 @@
       </p>
     </footer>
 
-    <script src="script.js"></script>
   </body>
 </html>
