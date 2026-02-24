@@ -164,3 +164,65 @@ gsap.fromTo(
   { opacity: 0 },
   { opacity: 1, duration: 1, delay: 2.2 },
 );
+
+/* ── Projects stacked scroll ── */
+(function () {
+  const section = document.getElementById("projects");
+  const cards = gsap.utils.toArray("#projectsStack .project-card");
+  const n = cards.length;
+  if (!section || n < 2) return;
+
+  const STEP_Y = 12; // px each back card is shifted upward
+  const STEP_S = 0.03; // scale decrement per depth level
+
+  // Set initial stacked deck positions
+  cards.forEach((card, i) => {
+    gsap.set(card, {
+      zIndex: n - i,
+      y: -i * STEP_Y,
+      scale: 1 - i * STEP_S,
+      transformOrigin: "top center",
+    });
+  });
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      start: "top top",
+      end: "+=" + (n - 1) * 100 + "vh",
+      scrub: 1.2,
+      pin: true,
+      pinSpacing: true,
+      anticipatePin: 1,
+    },
+  });
+
+  for (let i = 0; i < n - 1; i++) {
+    // Current front card exits upward
+    tl.to(
+      cards[i],
+      {
+        y: "-115%",
+        scale: 0.85,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.inOut",
+      },
+      i,
+    );
+    // All remaining cards advance one depth step forward
+    for (let j = i + 1; j < n; j++) {
+      const newDepth = j - (i + 1);
+      tl.to(
+        cards[j],
+        {
+          y: -newDepth * STEP_Y,
+          scale: 1 - newDepth * STEP_S,
+          duration: 1,
+          ease: "power2.inOut",
+        },
+        i,
+      );
+    }
+  }
+})();
