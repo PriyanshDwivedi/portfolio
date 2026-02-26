@@ -190,10 +190,10 @@ gsap.fromTo(
       trigger: section,
       start: "top top",
       end: "+=" + (n - 1) * 100 + "vh",
-      scrub: 1.2,
+      scrub: 0.6,
       pin: true,
       pinSpacing: true,
-      anticipatePin: 1,
+      invalidateOnRefresh: true,
     },
   });
 
@@ -206,7 +206,7 @@ gsap.fromTo(
         scale: 0.85,
         opacity: 0,
         duration: 1,
-        ease: "power2.inOut",
+        ease: "none",
       },
       i,
     );
@@ -219,10 +219,22 @@ gsap.fromTo(
           y: -newDepth * STEP_Y,
           scale: 1 - newDepth * STEP_S,
           duration: 1,
-          ease: "power2.inOut",
+          ease: "none",
         },
         i,
       );
     }
   }
 })();
+
+/* ── Project image auto-rotation ── */
+document.querySelectorAll(".project-card-right").forEach((panel) => {
+  const imgs = panel.querySelectorAll("img");
+  if (imgs.length < 2) return;
+  let current = 0;
+  setInterval(() => {
+    imgs[current].classList.remove("active");
+    current = (current + 1) % imgs.length;
+    imgs[current].classList.add("active");
+  }, 3000);
+});
