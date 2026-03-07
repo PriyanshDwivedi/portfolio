@@ -1,0 +1,19 @@
+/**
+ * Projects
+ * Auto-generated from style.css
+ */
+
+/* ── Projects ── */
+#projects {
+  max-width: 1200px;
+  padding: 6rem 2rem;
+  margin: 0 auto;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+  margin-top: 4rem;
+}
+

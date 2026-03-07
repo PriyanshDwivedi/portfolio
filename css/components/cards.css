@@ -1,0 +1,250 @@
+/**
+ * Cards
+ * Auto-generated from style.css
+ */
+
+.skill-category {
+  background: rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+.skill-category:hover {
+  border-color: rgba(108, 99, 255, 0.25);
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.skill-cat-title {
+  font-family: var(--font-alt);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.skill-cat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.skill-tag {
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  background: rgba(108, 99, 255, 0.08);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--accent2);
+  border: 1px solid rgba(108, 99, 255, 0.12);
+  transition: all 0.3s;
+}
+.skill-tag:hover {
+  background: rgba(108, 99, 255, 0.18);
+  border-color: var(--accent);
+  transform: scale(1.05);
+}
+
+/* ── Experience ── */
+.timeline {
+  position: relative;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--accent),
+    var(--accent2),
+    var(--accent3),
+    transparent
+  );
+}
+.timeline-item {
+  position: relative;
+  padding-left: 64px;
+  margin-bottom: 4.5rem;
+}
+.timeline-dot {
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--accent);
+  z-index: 2;
+  transition: all 0.3s;
+}
+.timeline-item:hover .timeline-dot {
+  background: var(--accent);
+  box-shadow: 0 0 25px rgba(108, 99, 255, 0.5);
+}
+.timeline-date {
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.5rem;
+}
+.timeline-title {
+  font-family: "Google Sans Flex", var(--font-alt), sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.3px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+.timeline-company {
+  font-family: var(--font-alt);
+  font-size: 1rem;
+  color: var(--accent2);
+  margin-bottom: 1rem;
+  font-weight: 500;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+.timeline-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.timeline-points li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.75;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+.timeline-points li::before {
+  content: "\ea6e"; /* ri-arrow-right-s-line */
+  font-family: "remixicon";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 1rem;
+}
+.timeline-points li strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ── Domains ── */
+.domains-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 1rem;
+}
+.domain-card {
+  background: rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 1.6rem 1.2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: default;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+.domain-card:hover {
+  border-color: rgba(108, 99, 255, 0.3);
+  transform: translateY(-5px) scale(1.02);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+.domain-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.6rem;
+  color: var(--accent2);
+}
+.domain-name {
+  font-family: var(--font-alt);
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
+  font-weight: 500;
+  color: var(--text);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
+}
+
+/* ── Certs ── */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+.cert-card {
+  background: rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+.cert-card:hover {
+  border-color: rgba(255, 107, 107, 0.25);
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+.cert-badge {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--accent4);
+}
+.cert-name {
+  font-family: var(--font-alt);
+  font-weight: 600;
+  color: var(--text-bright);
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  margin-bottom: 0.25rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+.cert-issuer {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  font-family: var(--font-label);
+}

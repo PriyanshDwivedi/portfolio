@@ -1,0 +1,204 @@
+/**
+ * Navbar
+ * Auto-generated from style.css
+ */
+
+/* ── Navbar ── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  padding: 1.1rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(24px);
+  background: rgba(8, 8, 13, 0.6);
+  border-bottom: 1px solid rgba(108, 99, 255, 0.08);
+  transition: all 0.3s ease;
+}
+.navbar.scrolled {
+  padding: 0.1rem 2.5rem;
+  background: rgba(8, 8, 13, 0.92);
+}
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--text-bright);
+  text-decoration: none;
+}
+.nav-logo span {
+  color: var(--accent);
+}
+.nav-links {
+  display: flex;
+  gap: 2.2rem;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  font-family: var(--font-label);
+}
+.nav-links a:hover {
+  color: var(--accent2);
+}
+
+/* ── Hamburger Menu ── */
+.hamburger {
+  display: none;
+  position: relative;
+  width: 56px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.hamburger svg {
+  width: 56px;
+  height: 36px;
+  fill: none;
+  stroke: var(--text-bright);
+  stroke-width: 7px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.hamburger svg use:nth-of-type(1) {
+  opacity: 1;
+  stroke-dashoffset: 221;
+  stroke-dasharray: 46 249;
+  transition:
+    stroke-dashoffset 0.12s linear 0.2s,
+    stroke-dasharray 0.12s linear 0.2s,
+    opacity 0s linear 0.2s;
+}
+.hamburger svg use:nth-of-type(2) {
+  stroke-dashoffset: 290;
+  stroke-dasharray: 25 270;
+}
+.hamburger.active svg use:nth-of-type(1) {
+  stroke-dashoffset: 175;
+  stroke-dasharray: 0 295;
+  opacity: 0;
+  transition:
+    stroke-dashoffset 0.07s linear 0.07s,
+    stroke-dasharray 0.07s linear 0.07s,
+    opacity 0s linear 0.14s;
+}
+.hamburger.active svg use:nth-of-type(2) {
+  animation: stroke-animation 1.2s ease-out forwards;
+}
+
+@keyframes stroke-animation {
+  0% {
+    stroke-dashoffset: 295;
+    stroke-dasharray: 25 270;
+  }
+  50% {
+    stroke-dashoffset: 68;
+    stroke-dasharray: 59 236;
+  }
+  65% {
+    stroke-dashoffset: 59;
+    stroke-dasharray: 59 236;
+  }
+  100% {
+    stroke-dashoffset: 68;
+    stroke-dasharray: 59 236;
+  }
+}
+
+/* ── Mobile Overlay ── */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  background: rgba(8, 8, 13, 0.97);
+  backdrop-filter: blur(30px);
+  z-index: 150;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
+}
+.mobile-overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+.mobile-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+.mobile-nav-links li {
+  opacity: 0;
+  transform: translateX(40px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+.mobile-overlay.active .mobile-nav-links li {
+  opacity: 1;
+  transform: translateX(0);
+}
+.mobile-overlay.active .mobile-nav-links li:nth-child(1) {
+  transition-delay: 0.15s;
+}
+.mobile-overlay.active .mobile-nav-links li:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.mobile-overlay.active .mobile-nav-links li:nth-child(3) {
+  transition-delay: 0.25s;
+}
+.mobile-overlay.active .mobile-nav-links li:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.mobile-overlay.active .mobile-nav-links li:nth-child(5) {
+  transition-delay: 0.35s;
+}
+.mobile-overlay.active .mobile-nav-links li:nth-child(6) {
+  transition-delay: 0.4s;
+}
+.mobile-nav-links a {
+  color: var(--text-bright);
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.mobile-nav-links a i {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: var(--accent);
+}
+.mobile-nav-links a:hover {
+  color: var(--accent2);
+}

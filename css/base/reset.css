@@ -1,0 +1,81 @@
+/**
+ * Reset & CSS Variables
+ * Global resets and design system variables
+ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colors - Background */
+  --bg: #08080d;
+  --bg2: #0e0e17;
+  --bg-card: #111119;
+  --bg-card-hover: #1a1a2e;
+
+  /* Colors - Accent */
+  --accent: #6c63ff;
+  --accent2: #00d4ff;
+  --accent3: #ff6b6b;
+  --accent4: #ffd93d;
+  --accent5: #00ffaa;
+
+  /* Colors - Text */
+  --text: #d8d8e8;
+  --text-dim: #b9b9cf;
+  --text-bright: #ffffff;
+
+  /* Typography */
+  --font-heading: "BBH Bartle", "Outfit", sans-serif;
+  --font-body: "Figtree", sans-serif;
+  --font-label: "Lexend", sans-serif;
+  --font-alt: "Outfit", sans-serif;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 30px;
+
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 20px 60px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.4);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}

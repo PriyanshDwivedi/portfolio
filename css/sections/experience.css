@@ -1,0 +1,95 @@
+/**
+ * Experience
+ * Auto-generated from style.css
+ */
+
+/* ── Experience ── */
+.timeline {
+  position: relative;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--accent),
+    var(--accent2),
+    var(--accent3),
+    transparent
+  );
+}
+.timeline-item {
+  position: relative;
+  padding-left: 64px;
+  margin-bottom: 4.5rem;
+}
+.timeline-dot {
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--accent);
+  z-index: 2;
+  transition: all 0.3s;
+}
+.timeline-item:hover .timeline-dot {
+  background: var(--accent);
+  box-shadow: 0 0 25px rgba(108, 99, 255, 0.5);
+}
+.timeline-date {
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.5rem;
+}
+.timeline-title {
+  font-family: "Google Sans Flex", var(--font-alt), sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.3px;
+}
+.timeline-company {
+  font-family: var(--font-alt);
+  font-size: 1rem;
+  color: var(--accent2);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.timeline-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.timeline-points li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.75;
+}
+.timeline-points li::before {
+  content: "\ea6e"; /* ri-arrow-right-s-line */
+  font-family: "remixicon";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 1rem;
+}
+.timeline-points li strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
