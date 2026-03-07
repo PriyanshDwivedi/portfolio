@@ -870,142 +870,143 @@ footer {
 
 /* ── Projects ── */
 #projects {
-  max-width: 100%;
-  padding: 0;
-  margin: 0;
-  background: #0036b8;
-}
-
-.projects-inner {
-  max-width: 1260px;
+  max-width: 1200px;
+  padding: 6rem 2rem;
   margin: 0 auto;
-  padding: 5.5rem 2.5rem 1.5rem;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-.projects-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 2rem;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 10;
-}
-
-.projects-label {
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 0;
-}
-
-.projects-label::before {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.projects-heading {
-  font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 3.2vw, 2.6rem);
-  font-weight: 400;
-  color: #fff;
-  line-height: 1.1;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  text-align: right;
-}
-
-.projects-stack {
-  flex: 1;
-  position: relative;
-  min-height: 0;
-  overflow: visible;
-}
-
-.project-card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 1.5rem;
-  background: #f4ede0;
-  border-radius: 24px;
+.projects-grid {
   display: grid;
-  grid-template-columns: 2fr 3fr;
-  overflow: hidden;
-  will-change: transform, opacity;
-  transform-origin: top center;
-  box-shadow: 0 24px 80px rgba(0, 0, 60, 0.45);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+  margin-top: 4rem;
 }
 
-.project-card-left {
-  padding: 2.8rem 2.5rem;
+/* ── Tilted Card ── */
+.tilted-card-wrapper {
+  perspective: 1000px;
   display: flex;
-  flex-direction: column;
-}
-
-.project-number {
-  font-family: var(--font-label);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: rgba(0, 50, 184, 0.6);
-  border: 1.5px solid rgba(0, 50, 184, 0.3);
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
-  flex-shrink: 0;
+  align-items: center;
 }
 
-.project-meta {
-  font-family: var(--font-label);
-  font-size: 0.72rem;
-  letter-spacing: 1.2px;
-  color: rgba(0, 50, 184, 0.6);
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-}
-
-.project-title {
-  font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
-  font-weight: 400;
-  color: #0036b8;
-  margin-bottom: 0.85rem;
-  letter-spacing: 0.3px;
-  text-transform: uppercase;
-  line-height: 1.1;
-}
-
-.project-desc {
-  font-size: 0.83rem;
-  color: #555;
-  line-height: 1.8;
-  flex: 1;
-}
-
-.project-card-right {
+.tilted-card {
   position: relative;
-  overflow: hidden;
-  border-radius: 0 24px 24px 0;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 3 / 4;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+  cursor: pointer;
 }
 
-.project-card-right img {
-  position: absolute;
-  inset: 0;
+.tilted-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform-style: preserve-3d;
+  transition:
+    transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.tilted-card:hover .tilted-card-inner {
+  transform: scale(1.05);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+}
+
+.tilted-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
   display: block;
-  opacity: 0;
-  transition: opacity 0.9s ease;
+  transform: translateZ(0);
 }
 
-.project-card-right img.active {
+.tilted-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 40%,
+    rgba(0, 0, 30, 0.85) 100%
+  );
+  transform: translateZ(20px);
+  pointer-events: none;
+}
+
+.tilted-card-badge {
+  align-self: flex-end;
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.4rem 0.8rem;
+  border-radius: 30px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.tilted-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transform: translateZ(30px);
+}
+
+.tilted-card-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 400;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.tilted-card-desc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.tilted-card-tooltip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  background: var(--bg-card);
+  border: 1px solid rgba(108, 99, 255, 0.3);
+  color: var(--text-bright);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-family: var(--font-label);
+  letter-spacing: 0.5px;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition:
+    opacity 0.2s ease,
+    transform 0.1s ease;
+}
+
+.tilted-card:hover .tilted-card-tooltip {
   opacity: 1;
 }
 
@@ -1075,33 +1076,9 @@ footer {
   .hero-role {
     font-size: 1rem;
   }
-  .projects-inner {
-    padding: 4.5rem 1.25rem 1rem;
-    height: 100svh;
-  }
-  .projects-header {
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-  }
-  .projects-heading {
-    text-align: left;
-    font-size: clamp(1.1rem, 5.5vw, 1.6rem);
-  }
-  .project-card {
+  .projects-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    border-radius: 18px;
-  }
-  .project-card-left {
-    padding: 1.6rem 1.4rem;
-  }
-  .project-number {
-    margin-bottom: 1rem;
-  }
-  .project-card-right {
-    border-radius: 0 0 18px 18px;
-    min-height: 180px;
+    gap: 2rem;
   }
   .timeline::before {
     left: 12px;
@@ -1125,12 +1102,6 @@ footer {
 @media (max-width: 480px) {
   section {
     padding: 3rem 1rem;
-  }
-  .projects-inner {
-    padding: 4rem 1rem 1rem;
-  }
-  .project-card-right {
-    min-height: 140px;
   }
   .hero-name {
     font-size: clamp(1.5rem, 8vw, 2.5rem);

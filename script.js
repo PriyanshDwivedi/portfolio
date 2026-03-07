@@ -165,76 +165,97 @@ gsap.fromTo(
   { opacity: 1, duration: 1, delay: 2.2 },
 );
 
-/* ── Projects stacked scroll ── */
-(function () {
-  const section = document.getElementById("projects");
-  const cards = gsap.utils.toArray("#projectsStack .project-card");
-  const n = cards.length;
-  if (!section || n < 2) return;
+/* ── 3D Tilted Cards ── */
+(() => {
+  const cards = document.querySelectorAll(".tilted-card");
 
-  const STEP_Y = 12; // px each back card is shifted upward
-  const STEP_S = 0.03; // scale decrement per depth level
+  cards.forEach((card) => {
+    const inner = card.querySelector(".tilted-card-inner");
+    const tooltip = card.querySelector(".tilted-card-tooltip");
 
-  // Set initial stacked deck positions
-  cards.forEach((card, i) => {
-    gsap.set(card, {
-      zIndex: n - i,
-      y: -i * STEP_Y,
-      scale: 1 - i * STEP_S,
-      transformOrigin: "top center",
+    let rotateX = 0;
+    let rotateY = 0;
+    let currentRotateX = 0;
+    let currentRotateY = 0;
+    let isHovering = false;
+
+    // Spring animation parameters
+    const springStiffness = 0.05;
+    const springDamping = 0.7;
+    let velocityX = 0;
+    let velocityY = 0;
+
+    // Animation loop for smooth spring physics
+    function animate() {
+      if (
+        !isHovering &&
+        Math.abs(currentRotateX) < 0.01 &&
+        Math.abs(currentRotateY) < 0.01
+      ) {
+        currentRotateX = 0;
+        currentRotateY = 0;
+        card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        return;
+      }
+
+      // Spring physics
+      const deltaX = rotateX - currentRotateX;
+      const deltaY = rotateY - currentRotateY;
+
+      velocityX += deltaX * springStiffness;
+      velocityY += deltaY * springStiffness;
+
+      velocityX *= springDamping;
+      velocityY *= springDamping;
+
+      currentRotateX += velocityX;
+      currentRotateY += velocityY;
+
+      card.style.transform = `rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)`;
+
+      requestAnimationFrame(animate);
+    }
+
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const mouseX = e.clientX - centerX;
+      const mouseY = e.clientY - centerY;
+
+      // Calculate rotation (max 15 degrees)
+      rotateY = (mouseX / (rect.width / 2)) * 15;
+      rotateX = -(mouseY / (rect.height / 2)) * 15;
+
+      // Position tooltip
+      if (tooltip) {
+        tooltip.style.left = `${e.clientX}px`;
+        tooltip.style.top = `${e.clientY - 30}px`;
+      }
+
+      if (!isHovering) {
+        isHovering = true;
+        animate();
+      }
+    });
+
+    card.addEventListener("mouseenter", () => {
+      isHovering = true;
+      animate();
+    });
+
+    card.addEventListener("mouseleave", () => {
+      isHovering = false;
+      rotateX = 0;
+      rotateY = 0;
+
+      // Hide tooltip
+      if (tooltip) {
+        tooltip.style.opacity = "0";
+      }
+
+      animate();
     });
   });
-
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: section,
-      start: "top top",
-      end: "+=" + (n - 1) * 100 + "vh",
-      scrub: 0.6,
-      pin: true,
-      pinSpacing: true,
-      invalidateOnRefresh: true,
-    },
-  });
-
-  for (let i = 0; i < n - 1; i++) {
-    // Current front card exits upward
-    tl.to(
-      cards[i],
-      {
-        y: "-115%",
-        scale: 0.85,
-        opacity: 0,
-        duration: 1,
-        ease: "none",
-      },
-      i,
-    );
-    // All remaining cards advance one depth step forward
-    for (let j = i + 1; j < n; j++) {
-      const newDepth = j - (i + 1);
-      tl.to(
-        cards[j],
-        {
-          y: -newDepth * STEP_Y,
-          scale: 1 - newDepth * STEP_S,
-          duration: 1,
-          ease: "none",
-        },
-        i,
-      );
-    }
-  }
 })();
-
-/* ── Project image auto-rotation ── */
-document.querySelectorAll(".project-card-right").forEach((panel) => {
-  const imgs = panel.querySelectorAll("img");
-  if (imgs.length < 2) return;
-  let current = 0;
-  setInterval(() => {
-    imgs[current].classList.remove("active");
-    current = (current + 1) % imgs.length;
-    imgs[current].classList.add("active");
-  }, 3000);
-});
