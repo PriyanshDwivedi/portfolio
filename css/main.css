@@ -46,4 +46,5 @@
    UTILITIES
    ======================================== */
 @import url("utilities/animations.css");
+@import url("utilities/container-queries.css");
 @import url("utilities/responsive.css");

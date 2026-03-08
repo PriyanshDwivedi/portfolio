@@ -14,19 +14,10 @@
 #contact .section-label::before {
   display: none;
 }
+/* Contact Heading - Now handled by container-queries.css */
+/* Keeping only non-typography styles */
 .contact-heading {
-  font-family: var(--font-heading);
-  font-size: clamp(0.9rem, 11vw + 0.5rem, 4.8rem);
-  font-weight: 400;
-  color: var(--text-bright);
-  letter-spacing: clamp(0px, 0.6vw, 1.5px);
   margin-bottom: 1.5rem;
-  line-height: 1.05;
-  text-transform: uppercase;
-  word-break: normal;
-  hyphens: none;
-  max-width: 100%;
-  text-wrap: balance;
 }
 .contact-sub {
   color: var(--text-dim);

@@ -44,16 +44,8 @@ strong {
   color: var(--text-bright);
 }
 
-/* Gradient Text Effect */
-.gradient-text {
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  word-break: normal;
-  hyphens: none;
-  white-space: nowrap;
-}
+/* Gradient Text Effect - Now handled by container-queries.css */
+/* Keeping minimal fallback only */
 
 /* Section Labels */
 .section-label {
@@ -85,18 +77,5 @@ strong {
   font-size: 1rem;
 }
 
-/* Section Titles */
-.section-title {
-  font-family: var(--font-heading);
-  font-size: clamp(0.85rem, 13vw + 0.5rem, 4rem);
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: clamp(0px, 0.5vw, 1px);
-  text-transform: uppercase;
-  color: var(--text-bright);
-  margin-bottom: 3rem;
-  max-width: 100%;
-  word-break: normal;
-  hyphens: none;
-  text-wrap: balance;
-}
+/* Section Titles - Now handled by container-queries.css */
+/* Keeping minimal fallback only */

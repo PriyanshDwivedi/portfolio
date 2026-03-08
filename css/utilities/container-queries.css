@@ -1,0 +1,108 @@
+/**
+ * Heading Typography — base sizes + JS-friendly layout
+ * Actual fitting handled by js/components/fitText.js
+ * No overflow:hidden so JS can measure scrollWidth accurately.
+ */
+
+/* Container contexts for potential cqi usage */
+.hero-container,
+.section-container {
+  container-type: inline-size;
+  container-name: content-container;
+  width: 100%;
+}
+
+/* ── Hero Name ── */
+.hero-name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 5.5vw, 4rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: clamp(0px, 0.15vw, 2px);
+  margin-bottom: 1.2rem;
+  color: var(--text-bright);
+  text-transform: uppercase;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
+/* ── Section Titles ── */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 7vw, 4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: clamp(0px, 0.1vw, 1px);
+  text-transform: uppercase;
+  color: var(--text-bright);
+  margin-bottom: 3rem;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
+/* ── Contact Heading ── */
+.contact-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 7.5vw, 4.8rem);
+  font-weight: 400;
+  color: var(--text-bright);
+  letter-spacing: clamp(0px, 0.15vw, 1.5px);
+  margin-bottom: 1.5rem;
+  line-height: 1.05;
+  text-transform: uppercase;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+
+/* ── Gradient text (layout only — visual gradient lives in hero.css) ── */
+.gradient-text {
+  word-break: keep-all;
+  hyphens: none;
+  white-space: nowrap;
+  display: inline;
+}
+
+/* ── Responsive base sizes (JS will further shrink if needed) ── */
+@media (max-width: 768px) {
+  .hero-name {
+    font-size: clamp(1.4rem, 6vw, 3rem);
+  }
+  .section-title {
+    font-size: clamp(1.2rem, 6.5vw, 3rem);
+    line-height: 1.08;
+  }
+  .contact-heading {
+    font-size: clamp(1.2rem, 7vw, 3rem);
+    line-height: 1.08;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: clamp(1.2rem, 7vw, 2.5rem);
+  }
+  .section-title {
+    font-size: clamp(1rem, 7.5vw, 2.5rem);
+    line-height: 1.1;
+  }
+  .contact-heading {
+    font-size: clamp(1rem, 8vw, 2.5rem);
+    line-height: 1.1;
+  }
+}
+
+/* Container query enhancement for larger containers */
+@container content-container (min-width: 600px) {
+  .hero-name {
+    font-size: clamp(1.6rem, 28cqi, 4rem);
+  }
+  .section-title {
+    font-size: clamp(1.4rem, 32cqi, 4rem);
+  }
+  .contact-heading {
+    font-size: clamp(1.4rem, 35cqi, 4.8rem);
+  }
+}

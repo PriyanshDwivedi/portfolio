@@ -8,6 +8,7 @@ import { initScrollAnimations } from "./components/scrollAnimations.js";
 import { initTiltedCards } from "./components/tiltedCards.js";
 import { initInteractiveSkills } from "./components/interactiveSkills.js";
 import { initInteractiveProjects } from "./components/interactiveProjects.js";
+import { initFitText } from "./components/fitText.js";
 import { onReady } from "./utils/dom.js";
 
 /**
@@ -21,6 +22,7 @@ function initApp() {
   initNavigation();
   initScrollAnimations();
   initTiltedCards();
+  initFitText();
 
   // Initialize interactive filtering
   const interactiveProjects = initInteractiveProjects();
