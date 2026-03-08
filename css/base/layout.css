@@ -1,19 +1,13 @@
-/**
- * Layout
- * Base layout structure, sections, and grid systems
- */
-
 main {
   position: relative;
   z-index: 1;
 }
 
 section {
-  padding: 6rem 2rem;
+  padding: 6rem 5%;
   position: relative;
 }
 
-/* Animated Gradient Background */
 .gradient-bg {
   position: fixed;
   top: 0;

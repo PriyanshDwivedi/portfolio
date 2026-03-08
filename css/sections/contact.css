@@ -1,9 +1,3 @@
-/**
- * Contact
- * Auto-generated from style.css
- */
-
-/* ── Contact ── */
 #contact {
   text-align: center;
   padding-bottom: 8rem;
@@ -14,8 +8,7 @@
 #contact .section-label::before {
   display: none;
 }
-/* Contact Heading - Now handled by container-queries.css */
-/* Keeping only non-typography styles */
+
 .contact-heading {
   margin-bottom: 1.5rem;
 }

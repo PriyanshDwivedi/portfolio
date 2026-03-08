@@ -1,10 +1,3 @@
-/**
- * Heading Typography — base sizes + JS-friendly layout
- * Actual fitting handled by js/components/fitText.js
- * No overflow:hidden so JS can measure scrollWidth accurately.
- */
-
-/* Container contexts for potential cqi usage */
 .hero-container,
 .section-container {
   container-type: inline-size;
@@ -12,7 +5,6 @@
   width: 100%;
 }
 
-/* ── Hero Name ── */
 .hero-name {
   font-family: var(--font-heading);
   font-size: clamp(1.6rem, 5.5vw, 4rem);
@@ -27,7 +19,6 @@
   hyphens: none;
 }
 
-/* ── Section Titles ── */
 .section-title {
   font-family: var(--font-heading);
   font-size: clamp(1.4rem, 7vw, 4rem);
@@ -42,7 +33,6 @@
   hyphens: none;
 }
 
-/* ── Contact Heading ── */
 .contact-heading {
   font-family: var(--font-heading);
   font-size: clamp(1.4rem, 7.5vw, 4.8rem);
@@ -57,7 +47,6 @@
   hyphens: none;
 }
 
-/* ── Gradient text (layout only — visual gradient lives in hero.css) ── */
 .gradient-text {
   word-break: keep-all;
   hyphens: none;
@@ -65,7 +54,6 @@
   display: inline;
 }
 
-/* ── Responsive base sizes (JS will further shrink if needed) ── */
 @media (max-width: 768px) {
   .hero-name {
     font-size: clamp(1.4rem, 6vw, 3rem);
@@ -94,7 +82,6 @@
   }
 }
 
-/* Container query enhancement for larger containers */
 @container content-container (min-width: 600px) {
   .hero-name {
     font-size: clamp(1.6rem, 28cqi, 4rem);

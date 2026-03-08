@@ -5,9 +5,9 @@
 
 export const siteContent = {
   meta: {
-    title: "Priyansh Dwivedi — Enterprise Solution Architect",
+    title: "Priyansh Dwivedi — Solution Architect",
     description:
-      "Enterprise Solution Architect with 14+ years transforming business challenges into scalable, cloud-native architectures across Finance, Insurance, Logistics, and emerging tech domains.",
+      "Solution Architect with 14+ years transforming business challenges into scalable, cloud-native architectures across Finance, Insurance, Logistics, and emerging tech domains.",
     keywords: [
       "Solution Architect",
       "Enterprise Architecture",
@@ -21,10 +21,10 @@ export const siteContent = {
 
   hero: {
     name: "Priyansh Dwivedi",
-    title: "Senior Solution Architect",
+    title: "Solution Architect",
     subtitle: "Enterprise Solutions & Cloud Architecture",
     description:
-      "Enterprise Solution Architect with 14+ years transforming business challenges into scalable, cloud-native architectures across Finance, Insurance, Logistics, and emerging tech domains.",
+      "Solution Architect with 14+ years transforming business challenges into scalable, cloud-native architectures across Finance, Insurance, Logistics, and emerging tech domains.",
     specializations: [
       "Multi-tenant SaaS Architecture",
       "Microservices & Micro-frontends",
@@ -109,7 +109,7 @@ export const siteContent = {
 
   contact: {
     heading:
-      'Ready to build<br />something <span class="gradient-text">amazing?</span>',
+      'Ready to build<br />something <span class="gradient-text">scalable?</span>',
     subtitle:
       "I'm always open to discussing new projects, architecture challenges, or opportunities to collaborate on innovative solutions.",
     email: "priyanshdwivedi7@gmail.com",

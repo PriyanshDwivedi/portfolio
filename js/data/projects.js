@@ -28,7 +28,7 @@ export const projects = [
     ],
 
     challenge:
-      "As the first engineer on the team, build an industry-first configurable multi-tenant SaaS platform from ground zero that empowers business users to configure lending products without code. The vision: enable financial institutions to design custom workflows, build dynamic UIs, and define business rules—transforming months of engineering work into days of configuration. Required hands-on architecture and development of five interconnected applications serving the complete lending lifecycle.",
+      "As the first engineer on the team, build a configurable multi-tenant SaaS platform from ground zero that empowers business users to configure lending products without code. The vision: enable financial institutions to design custom workflows, build dynamic UIs, and define business rules—transforming months of engineering work into days of configuration. Required hands-on architecture and development of five interconnected applications serving the complete lending lifecycle.",
 
     architecture: [
       "Architected and built Web Renderer Library: 30+ zero-dependency React components powering dynamic UI rendering from JSON configurations (forms, tables, multi-step journeys, data grids)",
@@ -53,10 +53,10 @@ export const projects = [
       "Empowered business users to build lending products without engineering dependencies—reduced time-to-market by 40%",
       "Built zero-dependency component architecture eliminating reliance on third-party libraries while maintaining full control",
       "Enabled white-label microsite deployment in days instead of months through configurable UI and workflow tools",
-      "Achieved enterprise-grade security: SOC 2 compliance-ready with strict tenant isolation and zero data breaches",
+      "Designed enterprise-grade security with strict tenant isolation and SOC 2 compliance readiness",
       "Scaled platform to support microsites, customer portals, dynamic reports, and email template rendering seamlessly",
       "Led engineering team of 10+ developers, establishing coding standards, >90% test coverage, and technical excellence culture",
-      "Designed intuitive UX for all three designer tools, creating Apple-like experiences for non-technical business users",
+      "Designed intuitive UX for all three designer tools to improve adoption for non-technical business users",
     ],
 
     techStack: [
@@ -126,7 +126,7 @@ The platform's power lies in configuration-driven rendering. User Interface Conf
 
 **Performance Engineering**
 
-Achieved industry-leading performance through hands-on optimization:
+Delivered strong performance through hands-on optimization:
 
 - Server-side rendering (SSR) with Next.js delivering sub-second Time to First Byte
 - Code splitting and lazy loading minimizing JavaScript bundle sizes
@@ -153,7 +153,7 @@ The platform fundamentally changed how Rahi delivers lending products:
 
 **After:** Product teams configure new lending products in 2-4 weeks using the five designer tools. They design workflows visually, build UIs through drag-and-drop, and define business rules without code. Engineering focuses on platform enhancements, not repetitive product implementations.
 
-This transformation enabled rapid customer onboarding, experimentation with product variations, and agile responses to regulatory changes—delivering genuine competitive advantage in the lending market.`,
+This transformation enabled rapid customer onboarding, experimentation with product variations, and agile responses to regulatory changes—delivering clear operational advantage in the lending market.`,
   },
 
   {
@@ -414,9 +414,9 @@ Key technical innovations included the styling algorithm that matched customer p
     },
 
     impact: [
-      "Positioned as India's #2 cryptocurrency platform at launch",
+      "Scaled to 25,000+ active traders across 110+ listed cryptocurrencies",
       "Achieved sub-second order matching latency",
-      "Maintained zero security breaches with multi-sig wallets",
+      "Implemented multi-sig wallet controls and security hardening for trading operations",
       "Scaled seamlessly during 10x traffic spikes during market volatility",
     ],
 

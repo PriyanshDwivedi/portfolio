@@ -1,9 +1,3 @@
-/**
- * Navbar
- * Auto-generated from style.css
- */
-
-/* ── Navbar ── */
 .navbar {
   position: fixed;
   top: 0;
@@ -51,7 +45,6 @@
   color: var(--accent2);
 }
 
-/* ── Hamburger Menu ── */
 .hamburger {
   display: none;
   position: relative;
@@ -120,7 +113,6 @@
   }
 }
 
-/* ── Mobile Overlay ── */
 .mobile-overlay {
   position: fixed;
   top: 0;

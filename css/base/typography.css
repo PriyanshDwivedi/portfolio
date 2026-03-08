@@ -1,9 +1,3 @@
-/**
- * Typography
- * Global text styles, headings, and font utilities
- */
-
-/* Global overflow prevention - allow normal word breaks */
 * {
   word-break: normal;
 }
@@ -44,10 +38,6 @@ strong {
   color: var(--text-bright);
 }
 
-/* Gradient Text Effect - Now handled by container-queries.css */
-/* Keeping minimal fallback only */
-
-/* Section Labels */
 .section-label {
   display: inline-flex;
   align-items: center;
@@ -76,6 +66,3 @@ strong {
 .section-label i {
   font-size: 1rem;
 }
-
-/* Section Titles - Now handled by container-queries.css */
-/* Keeping minimal fallback only */

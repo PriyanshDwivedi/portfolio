@@ -1,9 +1,3 @@
-/**
- * Domains
- * Auto-generated from style.css
- */
-
-/* ── Domains ── */
 .domains-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));

@@ -1,9 +1,3 @@
-/**
- * Hero
- * Auto-generated from style.css
- */
-
-/* ── HERO ── */
 #hero {
   min-height: 100vh;
   display: flex;
@@ -16,8 +10,6 @@
   min-width: 0;
 }
 
-/* Hero Name - Now handled by container-queries.css */
-/* Keeping only non-typography styles */
 .hero-name {
   margin-bottom: 1.2rem;
 }
