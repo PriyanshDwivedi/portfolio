@@ -71,8 +71,9 @@
   color: #fff;
   margin-bottom: 1rem;
   letter-spacing: -0.03em;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
 .impact-stat {

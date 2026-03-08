@@ -3,7 +3,7 @@
  * Measures actual rendered width and shrinks font-size until every line fits.
  */
 
-const SELECTOR = ".hero-name, .section-title, .contact-heading";
+const SELECTOR = ".hero-name, .section-title, .contact-heading, .impact-title";
 const MIN_SIZE = 10; // px – floor so text stays readable
 const STEP = 0.5; // px per iteration
 
