@@ -85,7 +85,7 @@
 }
 .timeline-points li::before {
   content: "\ea6e";
-  font-family: "remixicon";
+  font-family: "remixicon", sans-serif;
   position: absolute;
   left: 0;
   color: var(--accent);

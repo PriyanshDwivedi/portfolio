@@ -65,14 +65,14 @@
         transition: opacity 0.2s ease;
       }
     </style>
-    <script>
-      document.fonts.ready.then(function () {
-        document.body.classList.add("fonts-ready");
-      });
-      // Fallback: show after 2s even if fonts fail
+    <script type="module">
+      const FONT_LOAD_TIMEOUT_MS = 2000;
+      await document.fonts.ready;
+      document.body.classList.add('fonts-ready');
+      // Fallback: show after timeout even if fonts fail
       setTimeout(function () {
-        document.body.classList.add("fonts-ready");
-      }, 2000);
+        document.body.classList.add('fonts-ready');
+      }, FONT_LOAD_TIMEOUT_MS);
     </script>
   </head>
   <body>
@@ -80,15 +80,14 @@
 
     <!-- ── Navbar ── -->
     <nav class="navbar" id="navbar">
-      <a
-        href="#"
+      <button
+        type="button"
         class="nav-logo"
         onclick="
           window.scrollTo({ top: 0, behavior: 'smooth' });
           history.replaceState(null, null, ' ');
-          return false;
         "
-        >P<span>.</span>D<span>.</span></a
+        >P<span>.</span>D<span>.</span></button
       >
       <ul class="nav-links">
         <li>

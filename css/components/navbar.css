@@ -22,6 +22,10 @@
   font-size: 1.6rem;
   color: var(--text-bright);
   text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 .nav-logo span {
   color: var(--accent);
