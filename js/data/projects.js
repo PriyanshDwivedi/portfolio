@@ -13,13 +13,18 @@ export const projects = [
     company: "Rahi Platform Technologies",
     image: "images/projects/rahi-platform-01.png",
     tags: [
-      "Multi-tenant SaaS Design",
-      "Microservices Architecture",
-      "Micro-frontend Systems",
+      "Multi-tenant SaaS",
+      "Microservices",
+      "Micro Frontends",
       "React",
+      "Next.js",
+      "Node.js",
+      "MongoDB",
+      "PostgreSQL",
+      "AI/ML Integration",
       "Spring Boot",
+      "UI/UX Design",
       "AWS",
-      "Security by Design",
     ],
 
     challenge:
@@ -160,13 +165,13 @@ This transformation enabled rapid customer onboarding, experimentation with prod
     company: "Bajaj Technology Services",
     image: "images/projects/bajaj-finance-01.png",
     tags: [
-      "Microservices Architecture",
-      "Micro-frontend Systems",
-      "AWS",
       "Angular",
       "Spring Boot",
-      "CI/CD Pipeline Design",
-      "Cost Optimization Strategies",
+      "Microservices",
+      "Event Driven Architecture",
+      "AI/ML Integration",
+      "UI/UX Design",
+      "AWS",
     ],
 
     challenge:
@@ -248,12 +253,13 @@ I mentored developers on microservices patterns, cloud-native design principles,
     company: "Ibinito Pvt. Ltd.",
     image: "images/projects/b-well-01.png",
     tags: [
-      "Event Driven Architecture",
-      "Spring Boot",
       "Angular",
+      "Spring Boot",
       "Apache Kafka",
-      "Real-time Systems",
-      "AI/ML Integration",
+      "Event Driven Architecture",
+      "UI/UX Design",
+      "PostgreSQL",
+      "AWS",
     ],
 
     challenge:
@@ -320,14 +326,7 @@ The platform's recommendation engine used health data, user preferences, and beh
     year: "2019-2020",
     company: "The Mad Dresser",
     image: "images/projects/themaddresser-01.png",
-    tags: [
-      "E-Commerce",
-      "Personalization",
-      "Spring Boot",
-      "Angular",
-      "Recommendation Systems",
-      "Subscription Model",
-    ],
+    tags: ["Angular", "Spring Boot", "PostgreSQL", "UI/UX Design", "AWS"],
 
     challenge:
       "Design a personalized fashion styling platform where customers receive curated clothing boxes based on their style profile, body measurements, and fashion preferences. Required sophisticated style matching algorithms, inventory management, subscription billing, and seamless returns processing.",
@@ -388,12 +387,12 @@ Key technical innovations included the styling algorithm that matched customer p
     company: "Ibinito Pvt. Ltd.",
     image: "images/projects/bit7pay-01.png",
     tags: [
-      "Microservices Architecture",
-      "Real-time Systems",
+      "Angular",
       "Spring Boot",
-      "WebSocket",
+      "PostgreSQL",
+      "AWS",
       "Blockchain",
-      "Security by Design",
+      "UI/UX Design",
     ],
 
     challenge:
@@ -451,16 +450,12 @@ The platform featured real-time order book management, advanced trading options 
     company: "Ibinito Pvt. Ltd.",
     image: "images/projects/greenarth-01.png",
     tags: [
-      "Multi-vendor Marketplace",
-      "E-Commerce Architecture",
       "Angular",
       "Spring Boot",
-      "PostgreSQL",
-      "MongoDB",
-      "Apache Kafka",
       "AWS",
-      "Payment Gateway Integration",
-      "Inventory Management",
+      "UI/UX Design",
+      "E-Commerce",
+      "PostgreSQL",
     ],
 
     challenge:
